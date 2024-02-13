@@ -1,4 +1,4 @@
-from ../nitches/cache import cacheSystemVersion
+from ./cache import cacheSystemVersion
 import
   std/terminal,     # import standard terminal lib
   std/strutils,
