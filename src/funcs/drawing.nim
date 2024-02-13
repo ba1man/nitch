@@ -1,3 +1,4 @@
+from ../nitches/cache import cacheSystemVersion
 import
   std/terminal,     # import standard terminal lib
   std/strutils,
@@ -17,6 +18,8 @@ proc drawInfo*(asciiArt: bool) =
   let  # logo and it color
     coloredLogo = getLogo(distroId)  # color + logo tuple
     # (fgRed, nitchLogo)
+  
+  let (sysname, sysversion) = cacheSystemVersion()
 
   const  # icons before cotegores
     userIcon   = " "  # recomended: " " or "|>"
@@ -32,8 +35,8 @@ proc drawInfo*(asciiArt: bool) =
     # please insert any char after the icon
     # to avoid the bug with cropping the edge of the icon
 
-    # dotIcon = ""  # recomended: "" or "■"
-    dotIcon = "󰊠"  # recomended: "" or "■"
+    dotIcon = "■"  # recomended: "" or "■"
+    # dotIcon = "󰊠"  # recomended: "" or "■"
     # icon for demonstrate colors
 
   const  # categories
@@ -50,8 +53,8 @@ proc drawInfo*(asciiArt: bool) =
   let  # all info about system
     userInfo     = getUser()          # get user through $USER env variable
     hostnameInfo = getHostname()      # get Hostname hostname through /etc/hostname
-    distroInfo   = getDistro()        # get distro through /etc/os-release
-    kernelInfo   = getKernel()        # get kernel through /proc/version
+    distroInfo   = getDistro(sysname)        # get distro through /etc/os-release
+    kernelInfo   = getKernel(sysversion)        # get kernel through /proc/version
     uptimeInfo   = getUptime()        # get Uptime through /proc/uptime file
     shellInfo    = getShell()         # get shell through $SHELL env variable
     pkgsInfo     = getPkgs(distroId)  # get amount of packages in distro
@@ -76,7 +79,7 @@ proc drawInfo*(asciiArt: bool) =
 
   # colored out
     stdout.styledWrite("\n", styleBright, "  ╭───────────╮\n")
-    stdout.styledWrite("  │ ", color2, userIcon, color0, userCat, color1, userInfo, color0, "\n",)
+    stdout.styledWrite("  │ ", color1, userIcon, color0, userCat, color1, userInfo, color0, "\n",)
     if not isEmptyOrWhitespace(hostnameInfo):
       stdout.styledWrite("  │ ", color2, hnameIcon, color0, hnameCat, color2, hostnameInfo, color0, "\n")
     stdout.styledWrite("  │ ", color3, distroIcon, color0, distroCat, color3, distroInfo, color0, "\n")

@@ -1,5 +1,5 @@
-import std/strutils
 import std/osproc
+import std/strutils
 
 proc getUptime*(): string =
   let res = execProcess("sysctl -n kern.boottime")
