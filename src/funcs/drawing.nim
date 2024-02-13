@@ -11,7 +11,8 @@ import
 # the main function for drawing fetch
 proc drawInfo*(asciiArt: bool) =
   let  # distro id (arch, manjaro, debian)
-    distroId = getDistroId()
+    # distroId = getDistroId()
+    distroId = "macos"
 
   let  # logo and it color
     coloredLogo = getLogo(distroId)  # color + logo tuple
@@ -20,7 +21,8 @@ proc drawInfo*(asciiArt: bool) =
   const  # icons before cotegores
     userIcon   = " "  # recomended: " " or "|>"
     hnameIcon  = " "  # recomended: " " or "|>"
-    distroIcon = "󰻀 "  # recomended: "󰻀 " or "|>"
+    # distroIcon = "󰻀 "  # recomended: "󰻀 " or "|>"
+    distroIcon = " "  # recomended: "󰻀 " or "|>"
     kernelIcon = "󰌢 "  # recomended: "󰌢 " or "|>"
     uptimeIcon = " "  # recomended: " " or "|>"
     shellIcon  = " "  # recomended: " " or "|>"
@@ -30,7 +32,8 @@ proc drawInfo*(asciiArt: bool) =
     # please insert any char after the icon
     # to avoid the bug with cropping the edge of the icon
 
-    dotIcon = ""  # recomended: "" or "■"
+    # dotIcon = ""  # recomended: "" or "■"
+    dotIcon = "󰊠"  # recomended: "" or "■"
     # icon for demonstrate colors
 
   const  # categories

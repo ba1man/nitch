@@ -1,18 +1,16 @@
-import
-  std/strutils
+import std/strutils
+import std/osproc
 
 proc getUptime*(): string =
-  let
-    uptimeString = "/proc/uptime".open.readLine.split(".")[0]
-    uptimeUint = uptimeString.parseUInt
-
-    uptimeHours = uptimeUint div 3600 mod 24
-    uptimeMinutes = uptimeUint mod 3600 div 60
-    uptimeDays = uptimeUint div 3600 div 24 
+  let res = execProcess("sysctl -n kern.boottime")
+  let uptimeUint = res.split("usec = ")[1].split(" }")[0].parseUInt
+  let uptimeHours = uptimeUint div 3600 mod 24
+  let uptimeMinutes = uptimeUint mod 3600 div 60
+  let uptimeDays = uptimeUint div 3600 div 24 
 
   if uptimeDays == 0:
     result = $(uptimeHours) & "h " & $(uptimeMinutes) & "m"
-  
+
   elif uptimeHours == 0 and uptimeDays == 0:
     result = $(uptimeMinutes) & "m"
 

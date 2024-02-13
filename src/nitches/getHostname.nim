@@ -1,12 +1,5 @@
-import std/os
-import std/parsecfg
+import std/osproc
+import std/strutils
 
 proc getHostname*(): string =
-  let hostname = "/etc/hostname"
-  let hostnameOpenrc = "/etc/conf.d/hostname"
-  if hostname.fileExists():
-    result = hostname.open.readLine
-  elif hostnameOpenrc.fileExists():
-    result = hostnameOpenrc.loadConfig.getSectionValue("", "hostname")
-  else:
-    result = ""
+  result = strip(execProcess("hostname"))

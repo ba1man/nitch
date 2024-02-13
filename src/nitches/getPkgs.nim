@@ -1,7 +1,7 @@
 import
   ../funcs/packages/[getPacmanPkgs, getRpmPkgs,
                      getPortagePkgs, getXbpsPkgs,
-                     getDpkgPkgs]
+                     getDpkgPkgs, getBrewPkgs]
 
 proc getPkgs*(distroId: string): string =
   case distroId:
@@ -40,6 +40,9 @@ proc getPkgs*(distroId: string): string =
 
   of "pop":
     result = getDpkgPkgs()
+
+  of "macos":
+    result = getBrewPkgs()
 
   else:
     result = ">3"
