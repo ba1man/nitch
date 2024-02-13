@@ -1,2 +1,7 @@
-proc getKernel*(productVersion: string): string =
-  result = productVersion
+import std/[
+  osproc, 
+  strutils
+]
+
+proc getKernel*(): string =
+  result = strip(execProcess("uname -r"))

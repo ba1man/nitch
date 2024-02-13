@@ -1,5 +1,7 @@
-import std/osproc
-import std/strutils
+import std/[
+  osproc,
+  strutils
+]
 
 proc getHostname*(): string =
   result = strip(execProcess("hostname"))

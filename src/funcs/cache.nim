@@ -1,5 +1,8 @@
-import std/strutils
-import std/xmlparser, std/xmltree
+import std/[
+  strutils,
+  xmlparser,
+  xmltree
+]
 
 proc cacheSystemVersion*(): (string, string) =
   let filepath = "/System/Library/CoreServices/SystemVersion.plist"

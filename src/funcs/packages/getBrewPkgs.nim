@@ -1,4 +1,9 @@
-import std/[strutils, osproc, sequtils, os]
+import std/[
+  strutils,
+  osproc,
+  sequtils,
+  os
+]
 
 proc getBrewPkgs*(): string =
   var paths: array[2, string]

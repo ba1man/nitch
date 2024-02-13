@@ -53,8 +53,8 @@ proc drawInfo*(asciiArt: bool) =
   let  # all info about system
     userInfo     = getUser()          # get user through $USER env variable
     hostnameInfo = getHostname()      # get Hostname hostname through /etc/hostname
-    distroInfo   = getDistro(sysname)        # get distro through /etc/os-release
-    kernelInfo   = getKernel(sysversion)        # get kernel through /proc/version
+    distroInfo   = getDistro(sysname, sysversion)        # get distro through /etc/os-release
+    kernelInfo   = getKernel()        # get kernel through /proc/version
     uptimeInfo   = getUptime()        # get Uptime through /proc/uptime file
     shellInfo    = getShell()         # get shell through $SHELL env variable
     pkgsInfo     = getPkgs(distroId)  # get amount of packages in distro

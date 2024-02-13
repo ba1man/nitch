@@ -1,6 +1,8 @@
-import std/strutils
-import std/osproc
-import std/strformat
+import std/[
+  osproc,
+  strutils,
+  strformat
+]
 
 proc parseVMStat*(vminfo: string, key: string): string =
   let i0 = find(vminfo, key) + key.len + 1
@@ -10,7 +12,7 @@ proc parseVMStat*(vminfo: string, key: string): string =
 proc getRam*(): string =
   let sysinfo = strip(execProcess("sysctl -n hw.pagesize hw.memsize vm.page_pageable_internal_count vm.page_purgeable_count")).split("\n")
   let hw_pagesize = sysinfo[0].parseUInt
-  let mem_total = sysinfo[1].parseFloat / 1024 / 1024
+  let mem_total = sysinfo[1].parseUInt div 1024 div 1024
   # let pages_app = sysinfo[2].parseUInt - sysinfo[3].parseUInt
 
   let vminfo = strip(execProcess("vm_stat"))
@@ -18,7 +20,7 @@ proc getRam*(): string =
   let pages_compressed = parseVMStat(vminfo, "Pages occupied by compressor").parseUInt
   let pages_active = parseVMStat(vminfo, "Pages active").parseUInt
 
-  let mem_used = float((pages_active + pages_wired + pages_compressed) * hw_pagesize) / 1024 / 1024
+  let mem_used = (pages_active + pages_wired + pages_compressed) * hw_pagesize div 1024 div 1024
   let mem_label = "MiB"
 
   result = &"{uint(mem_used)}{mem_label} / {uint(mem_total)}{mem_label}"
