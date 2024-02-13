@@ -35,8 +35,8 @@ proc drawInfo*(asciiArt: bool) =
     # please insert any char after the icon
     # to avoid the bug with cropping the edge of the icon
 
-    dotIcon = "■"  # recomended: "" or "■"
-    # dotIcon = "󰊠"  # recomended: "" or "■"
+    # dotIcon = "■"  # recomended: "" or "■"
+    dotIcon = "󰊠"  # recomended: "" or "■"
     # icon for demonstrate colors
 
   const  # categories
@@ -89,5 +89,5 @@ proc drawInfo*(asciiArt: bool) =
     stdout.styledWrite("  │ ", color1, pkgsIcon, color0, pkgsCat, color1, pkgsInfo, color0, "\n")
     stdout.styledWrite("  │ ", color2, ramIcon, color0, ramCat, fgYellow, ramInfo, color0, "\n")
     stdout.styledWrite("  ├───────────┤\n")
-    stdout.styledWrite("  │ ", color7, colorsIcon, color0, colorsCat, color7, dotIcon, " ", color1, dotIcon, " ", color2, dotIcon, " ", color3, dotIcon, " ", color4, dotIcon, " ", color5, dotIcon, " ", color6, dotIcon, " ", color8, dotIcon, color0, "\n")
+    stdout.styledWrite("  │ ", color7, colorsIcon, color0, colorsCat, color7, dotIcon, " ", color1, dotIcon, " ", color2, dotIcon, " ", color3, dotIcon, " ", color4, dotIcon, " ", color5, dotIcon, " ", color6, dotIcon, " ", color8, dotIcon, " ", color0, "\n")
     stdout.styledWrite("  ╰───────────╯\n\n")
