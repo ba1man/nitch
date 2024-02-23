@@ -35,8 +35,8 @@ proc drawInfo*(asciiArt: bool) =
     # please insert any char after the icon
     # to avoid the bug with cropping the edge of the icon
 
-    # dotIcon = "■"  # recomended: "" or "■"
-    dotIcon = "󰊠"  # recomended: "" or "■"
+    dotIcon = ""  # recomended: "" or "■"
+    # dotIcon = "󰊠"  # recomended: "" or "■"
     # icon for demonstrate colors
 
   const  # categories
